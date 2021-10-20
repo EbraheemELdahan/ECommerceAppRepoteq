@@ -90,12 +90,15 @@ namespace ECommerceApp.Controllers
                 {
 
                     order.ProductsQuantities.Add(new ProductsQuantityViewModel() { Product = product, Quantity = QuantityArrow });
-                  //  x = order.ProductsQuantities.IndexOf(new ProductsQuantityViewModel() { Product = product, Quantity = QuantityArrow });
+                    //  x = order.ProductsQuantities.IndexOf(new ProductsQuantityViewModel() { Product = product, Quantity = QuantityArrow });
                 }
-                 
-                order.ProductsQuantities[index].Quantity += QuantityArrow;
-                //order.ProductsQuantities.Add(new ProductsQuantityViewModel() { Product = product, Quantity = 1 });
-                order.TotalPrice += product.Price *QuantityArrow;
+                else 
+                {
+                    order.ProductsQuantities[index].Quantity += QuantityArrow;
+                    //order.ProductsQuantities.Add(new ProductsQuantityViewModel() { Product = product, Quantity = 1 });
+                    
+                }
+                order.TotalPrice += product.Price * QuantityArrow;
                 //order.TotalQuantities++;
 
             }

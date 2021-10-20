@@ -33,7 +33,7 @@
                                         <th class="cart-romove item">Remove</th>
                                         <th class="cart-description item">Image</th>
                                         <th class="cart-product-name item">Product Name</th>
-                                        <th class="cart-edit item">Edit</th>
+                                        
                                         <th class="cart-qty item">Quantity</th>
                                         <th class="cart-sub-total item">Subtotal</th>
                                         <th class="cart-total last-item">Grandtotal</th>
@@ -73,7 +73,7 @@
                                                 <span class="product-color">COLOR:<span>Blue</span></span>
                                             </div>
                                         </td>
-                                        <td class="cart-product-edit"><a href="#" class="product-edit">Edit</a></td>
+                                        @*<td class="cart-product-edit"><a href="#" class="product-edit">Edit</a></td>*@
                                         <td class="cart-product-quantity">
                                             @*<div class="quant-input">
                 <div class="arrows">
@@ -97,8 +97,8 @@
                                         <td colspan="7">
                                             <div class="shopping-cart-btn">
                                                 <span class="">
-                                                    <a href="#" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
-                                                    <a href="#" class="btn btn-upper btn-primary pull-right outer-right-xs">Update shopping cart</a>
+                                                    <a href="/Products/Index" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
+                                                   @* <a href="#" class="btn btn-upper btn-primary pull-right outer-right-xs">Update shopping cart</a>*@
                                                 </span>
                                             </div><!-- /.shopping-cart-btn -->
                                         </td>
@@ -145,11 +145,11 @@
                                                 </select>*@
                                         </div>
                                         <div class="form-group">
-                                            <label class="info-title control-label">Street</label>
+                                            <label class="info-title control-label">Street<span>*</span></label>
                                             <input type="text" name="Street" class="form-control unicase-form-control text-input" placeholder="">
                                         </div>
                                         <div class="form-group">
-                                            <label class="info-title control-label">Bulding Number</label>
+                                            <label class="info-title control-label">Bulding Number<span>*</span></label>
                                             <input type="text" name="BuildingNumber" class="form-control unicase-form-control text-input" placeholder="">
                                         </div>
                                         <div class="pull-right">
