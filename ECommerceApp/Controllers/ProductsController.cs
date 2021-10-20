@@ -48,7 +48,18 @@ namespace ECommerceApp.Controllers
             return View(product);
         }
         
-       
+       public ActionResult ProductsInCayegory(int id)
+        {
+            ViewBag.Categor = db.Categories.SingleOrDefault(a => a.ID == id);
+           List< Product> products = db.Categories.Include(a => a.Products).FirstOrDefault(a => a.ID == id).Products.ToList();
+            return View(products);
+        }
+        public ActionResult ProductsInBrand(int id)
+        {
+            ViewBag.Brand = db.Brands.SingleOrDefault(a => a.ID == id);
+            List<Product> products = db.Brands.Include(a => a.Products).FirstOrDefault(a => a.ID == id).Products.ToList();
+            return View(products);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -16,6 +16,7 @@ namespace ECommerceApp
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //HttpCookie orderCookie = new HttpCookie("orderCookie");
         }
     }
 }
