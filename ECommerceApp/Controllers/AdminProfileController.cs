@@ -4,25 +4,29 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ECommerceApp.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ECommerceApp.Controllers
 {
     public class AdminProfileController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
-        // GET: AdminProfile
-        public ActionResult Index(string id)
+
+        //private readonly UserManager<IdentityUser> _userManager;
+        //public AdminProfileController(UserManager<IdentityUser> userManager)
+        //{
+        //    _userManager = userManager;
+        //}
+        public ActionResult Index()
         {
-            if (id == null)
-            {
-                id = "3063038f-1f9d-4d02-9001-6bc43f87b8ab";
-            }
-            if(id== "3063038f-1f9d-4d02-9001-6bc43f87b8ab")
-            {
-                var admin=db.Users.SingleOrDefault(a => a.Id == id);
-                return View(admin);
-            }
-            return View("~/Views/Account/Login.cshtml");
+
+            // get userid from context
+
+            string id = User.Identity.GetUserId();
+            var admin = db.Users.SingleOrDefault(a => a.Id == id);
+            return View(admin);
+
         }
     }
 }

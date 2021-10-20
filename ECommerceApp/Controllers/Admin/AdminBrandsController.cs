@@ -11,7 +11,7 @@ using System.IO;
 
 namespace ECommerceApp.Controllers.Admin
 {
-    [Authorize(Roles ="Admin")]
+    //[Authorize(Roles ="Admin")]
     public class AdminBrandsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

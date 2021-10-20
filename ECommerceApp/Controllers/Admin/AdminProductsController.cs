@@ -12,20 +12,20 @@ using System.IO;
 
 namespace ECommerceApp.Controllers.Admin
 {
-    [Authorize(Roles ="Admin")]
+    //[Authorize(Roles ="Admin")]
     public class AdminProductsController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: AdminProducts
-        public ActionResult Index(int? page,string SortOrder)
+        public ActionResult Index(int? page, string SortOrder)
         {
 
-          
+
             var products = db.Products.Include(p => p.Brand).Include(p => p.Category);
 
             ViewBag.CurrentSort = SortOrder;
             ViewBag.IDSort = String.IsNullOrEmpty(SortOrder) ? "IDSort" : "";
-            ViewBag.RateSort = SortOrder== "RateSort" ? "RateSort" : "";
+            ViewBag.RateSort = SortOrder == "RateSort" ? "RateSort" : "";
             ViewBag.PriceSort = SortOrder == "PriceSort" ? "PriceSort" : "";
 
             switch (SortOrder)
@@ -99,20 +99,20 @@ namespace ECommerceApp.Controllers.Admin
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Product product,HttpPostedFileBase ImageURL)
+        public ActionResult Edit(Product product, HttpPostedFileBase ImageURL)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                FileInfo fi = new FileInfo(Server.MapPath("~/Images/ProductsImages/"+ product.ImageURL));
+                FileInfo fi = new FileInfo(Server.MapPath("~/Images/ProductsImages/" + product.ImageURL));
                 fi.Delete();
-                string NewImageURL = product.ID +"_"+ ImageURL.FileName;
+                string NewImageURL = product.ID + "_" + ImageURL.FileName;
                 ImageURL.SaveAs(Server.MapPath("~/Images/ProductsImages/" + NewImageURL));
                 product.ImageURL = NewImageURL;
                 db.SaveChanges();
                 return RedirectToAction("index");
-                
+
             }
             ViewBag.CategoryID = new SelectList(db.Categories.ToList(), "ID", "Name");
             ViewBag.BrandID = new SelectList(db.Brands.ToList(), "ID", "Name");
@@ -124,12 +124,12 @@ namespace ECommerceApp.Controllers.Admin
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
-            Product product = db.Products.Include(a=>a.Category).Include(a=>a.Brand).SingleOrDefault(a => a.ID == id);
+            Product product = db.Products.Include(a => a.Category).Include(a => a.Brand).SingleOrDefault(a => a.ID == id);
             return View(product);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete (Product product)
+        public ActionResult Delete(Product product)
         {
             var Deletedproduct = db.Products.Single(a => a.ID == product.ID);
             db.Products.Remove(Deletedproduct);
@@ -145,5 +145,5 @@ namespace ECommerceApp.Controllers.Admin
             base.Dispose(disposing);
         }
     }
-    
+
 }

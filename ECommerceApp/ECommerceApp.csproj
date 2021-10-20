@@ -195,6 +195,10 @@
     <Compile Include="Migrations\202110201106043_init.Designer.cs">
       <DependentUpon>202110201106043_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110201459177_test.cs" />
+    <Compile Include="Migrations\202110201459177_test.Designer.cs">
+      <DependentUpon>202110201459177_test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Brand.cs" />
@@ -211,6 +215,7 @@
     <Compile Include="Models\ProductsQuantityViewModel.cs" />
     <Compile Include="Models\Shipped Data.cs" />
     <Compile Include="Models\SlidingImages.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -525,6 +530,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110201106043_init.resx">
       <DependentUpon>202110201106043_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110201459177_test.resx">
+      <DependentUpon>202110201459177_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
