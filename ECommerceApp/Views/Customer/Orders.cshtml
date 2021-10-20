@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ECommerceApp.Models.Order>
+@{
+    ViewBag.Title = "Orders";
+    
+}
+
+<h2 style="text-align:center">Orders</h2>
+<table class="table table-bordered">
+    <tr>
+
+        <th>OrderNumber</th>
+        <th>Date</th>
+        <th>Number Of Items</th>
+        <th>Status</th>
+        @*<th>Notes</th>
+        <th>Details</th>
+        <th>Tax</th>*@
+        <th>Total Price</th>
+        <th>Operations</th>
+
+    </tr>
+    @foreach(var Item in Model)
+            {
+<tr>
+    <td>@Item.OrderNumber</td>
+    <td>@Item.OrderDate</td>
+    <td>@Item.OrderDetails.Count</td>
+    <td>@Item.Status</td>
+    <td>@Item.TotalPrice</td>
+    <td>
+        @Html.ActionLink("Details", "OrderDetails", "Customer", new { id=Item.ID}, new {@class="a btn btn-primary "})
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+</tr>
+             } 
+</table>
+

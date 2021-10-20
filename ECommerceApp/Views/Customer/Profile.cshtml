@@ -1,0 +1,25 @@
+﻿@model ECommerceApp.Models.ApplicationUser
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2>Profile</h2>
+<table class="table table-bordered table-light">
+    <tr>
+        <th>Profile Image</th>
+        <th>FullName</th>
+        <th>Email</th>
+        <th>DateOfBirth</th>
+        <th>Company</th>
+    </tr>
+    <tr>
+        <td>
+            
+            <img src="~/Images/images.jpg" style="border-radius:50%" width="70px" height="70px" />
+        </td>
+        <td>@Model.FirstName <span> </span> @Model.LastName</td>
+        <td>@Model.Email</td>
+        <td>@Model.DaetOfBirth.ToString("yyyy/MM/dd")</td>
+        <td>@Model.CompanyName</td>
+    </tr>
+</table>

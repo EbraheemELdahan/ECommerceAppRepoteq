@@ -1,0 +1,71 @@
+﻿@model IEnumerable<ECommerceApp.Models.Brand>
+
+@{
+    ViewBag.Name = "Brands";
+    ViewBag.Title = "Index";
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+
+@Html.ActionLink("Add Brand", "Create", "AdminBrands", new { @class = "btn btn-success ", style = "margin-top:5px;margin-left:5px" })
+<div style="margin:5px" >
+    <span style="font:30px bold verdana">Search : </span><input type="text" id="txtSearch" class="form-search" style="border-radius:10%;padding:5px" />
+
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(a => a.BrandImg)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+
+
+        <th>OPerations</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="~/Images/BrandsImages/@item.BrandImg" style="border-radius:50%" width="50px" height="50px" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+@section script{
+    <script>
+        $(function () {
+            $("#txtSearch").keyup(function () {
+                var userInput = $(this).val();
+                $("table:first tr:gt(0)").each(function (index, element) {
+                    var currentValue = $(this).children("td:eq(1)")()
+                })
+                
+            })
+        })
+    </script>
+    
+    }

@@ -1,0 +1,26 @@
+﻿@model ECommerceApp.Models.Category
+@{
+    ViewBag.Name = "Category Details";
+    ViewBag.Title = "Details";
+}
+
+
+<table class="table table-bordered table-light" >
+    <tr>
+       <th>Category Iamge</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Number Of Products</th>
+        <th>Products</th>
+    </tr>
+    <tr>
+        <td><img src="~/Images/CategoriesImages/@Model.CatName" style="border-radius:50%" height="70px" width="70px" /></td>
+        <td>@Model.Name</td>
+        <td>@Model.Description</td>
+        <td>@Model.Products.Count</td>
+        <td>
+            @Html.ActionLink("Products", "Index", "AdminProducts", new { id = Model.ID }, new {@class="btn"})
+        </td>
+      
+    </tr>
+</table>

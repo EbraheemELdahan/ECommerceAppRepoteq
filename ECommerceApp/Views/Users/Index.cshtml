@@ -1,0 +1,47 @@
+﻿@model  List<ECommerceApp.Models.ApplicationUser>
+@{
+    ViewBag.name = "Users";
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>Profile Image</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Birth Date</th>
+        <th>Company</th>
+        <th>Phone Number</th>
+        <th>Role</th>
+        <th>Operations</th>
+
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="~/Images/UsersProfile/@item.UserImg" style="border-radius:50%" height="50px" width="50px"/>
+            </td>
+            <td>@item.FirstName</td>
+            <td>@item.LastName</td>
+            <td>@item.Email</td>
+            <td>@item.DaetOfBirth.ToString("dd/M/yyyy") </td>
+            <td>@item.CompanyName</td>
+            <td>@item.PhoneNumber</td>
+            <td>@item.Roles.FirstOrDefault(a => a.UserId == item.Id).RoleId</td>
+            <td>
+                @Html.ActionLink("Details","Details","Users",new {id=item.Id },new { @class="a"})
+                @Html.ActionLink("Edit", "Edit", "Users", new { id = item.Id },new { @class = "a" })|
+                @Html.ActionLink("Delete", "Delete", "Users", new { id = item.Id }, new { @class="a",onclick = "return confirm('are you sure to delete')" })
+               @* @Html.ActionLink("EditPass", "editpassword", "student", new { id = item.Id })*@
+            
+            </td>
+
+        </tr>
+    }
+</table>

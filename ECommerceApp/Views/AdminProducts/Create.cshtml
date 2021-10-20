@@ -1,0 +1,82 @@
+﻿@model ECommerceApp.Models.Product
+@{
+    ViewBag.Title = "Create";
+    ViewBag.Name = " Create Product";
+    Layout = "~/Views/Shared/_layoutAdmin.cshtml";
+
+}
+
+
+
+@using (Html.BeginForm("Create", "AdminProducts", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal col-6" style="width:50%">
+      
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(a => a.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(a => a.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.Name, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(a => a.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(a => a.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.Description, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(a => a.Price, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(a => a.Price, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.Price, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(a => a.Rate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(a => a.Rate, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.Rate, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(a => a.IsPopular, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(a => a.IsPopular)
+                @Html.ValidationMessageFor(a => a.IsPopular, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(a => a.ImageURL, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="ImageURL" />
+                @Html.ValidationMessageFor(a => a.Name, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(a => a.Category, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(a => a.CategoryID, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.CategoryID, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(a => a.Brand, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(a => a.BrandID, null, new { @class = "form-control" })
+                @Html.ValidationMessageFor(a => a.BrandID, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+    @Html.ActionLink("Back To List", "index", null, new { @class = "btn" })
+}

@@ -1,0 +1,54 @@
+﻿@model ECommerceApp.Models.Category
+@{
+    ViewBag.Title = "edit";
+    ViewBag.Name = "Category Edit";
+    Layout = "~/Views/Shared/_layoutAdmin.cshtml";
+}
+
+
+
+@using (Html.BeginForm("edit", "AdminCategories", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @*@Html.Partial("EditcreatePartialVeiw")*@
+
+    <div class="form-horizontal">
+        <h3 style="text-align:center">Create Category</h3>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(a => a.ID)
+        <div class="form-group">
+            @Html.LabelFor(a => a.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(a => a.Name, new { @class = "form-control", value = Model.Name })
+                @Html.ValidationMessageFor(a => a.Name, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(a => a.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(a => a.Description, new { @class = "form-control", value = Model.Description })
+                @Html.ValidationMessageFor(a => a.Description, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(a => a.CatName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="NewCatName" />
+                @Html.ValidationMessageFor(a => a.CatName, null, new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" name="CatName" value="edit" class="btn btn-warning" />
+        </div>
+    </div>
+    @Html.ActionLink("Back To List", "index", null, new { @class = "btn" })
+
+
+}

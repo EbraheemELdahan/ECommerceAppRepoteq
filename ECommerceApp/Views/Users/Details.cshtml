@@ -1,0 +1,27 @@
+﻿@model ECommerceApp.Models.ApplicationUser
+@{
+    ViewBag.Title = "Details";
+    ViewBag.Name = "User Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<dl style="text-align:center">
+    <dt>Profile Image</dt>
+
+    <dd><img src="~/Images/UsersProfile/@Model.UserImg" style="border-radius:50%" width="70px" height="70px" /></dd>
+    <dt>ID</dt>
+    <dd>@Model.Id</dd>
+    <dt>First Name</dt>
+    <dd>@Model.FirstName</dd>
+    <dt>Last Name</dt>
+    <dd>@Model.LastName</dd>
+    <dt>Company Name</dt>
+    <dd>@Model.CompanyName</dd>
+    <dt>Phone Number</dt>
+    <dd>@Model.PhoneNumber</dd>
+    <dt>Birt Date</dt>
+    <dd>@Model.DaetOfBirth.ToString("dd/M/yyyy")</dd>
+
+</dl>
+

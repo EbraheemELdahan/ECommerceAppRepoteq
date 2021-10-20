@@ -1,0 +1,30 @@
+﻿@model ECommerceApp.Models.Category
+<div class="form-horizontal col-6">
+    
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    
+    <div class="form-group">
+        @Html.LabelFor(a => a.Name, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(a => a.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(a => a.Name, null, new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(a => a.Description, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(a => a.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(a => a.Description, null, new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(a => a.CatName, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="CatName" />
+            @Html.ValidationMessageFor(a => a.CatName, null, new { @class = "text-danger" })
+        </div>
+    </div>
+   
+
+</div>

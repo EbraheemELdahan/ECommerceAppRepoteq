@@ -1,0 +1,25 @@
+﻿<div class="form-horizontal container col-lg-offset-3 font-weight-bold " style="font:20px black verdana" >
+    <div class="row">
+        
+
+        <dl>
+            <dt>Product Image</dt>
+            <dd><img src="~/Images/ProductsImages/@Model.ImageURL" style="border-radius:50%" height="70px" width="70px"></dd>
+            <dt>Name</dt>
+            <dd> @Model.Name</dd>
+            <dt>Description</dt>
+            <dd>@Model.Description</dd>
+            <dt>Price</dt>
+            <dd>@Model.Price</dd>
+            <dt>Rate</dt>
+            <dd>@Model.Rate</dd>
+            <dt>Category</dt>
+            <dd>@Model.Category.Name</dd>
+            <dt>Brand</dt>
+            <dd>@Model.Brand.Name</dd>
+        </dl>
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    </div>
+</div>
+@Html.ActionLink("Back To List", "index", null, new { @class = "btn" })
+

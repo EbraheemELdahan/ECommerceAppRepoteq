@@ -1,0 +1,37 @@
+﻿
+
+
+@model IEnumerable<ECommerceApp.Models.Category>
+<form method="get">
+    <div class="control-group">
+        <ul class="categories-filter animate-dropdown">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown"
+                   href="~/Home/SearchHeader">Categories <b class="caret"></b></a>
+                @foreach (var item in Model)
+                {
+                    <ul class="dropdown-menu" role="menu">
+                    <li class="menu-header">@item.Name</li>
+
+                   @foreach (var item2 in @Model.Where(a => a.ParentCategoryID == item.ID))
+                   {
+
+
+                    <li role="presentation">
+                      @*  <a role="menuitem" tabindex="-1" href="">- Clothing</a>*@
+                        @Html.ActionLink(item2.Name, "Details", "Category", new { id = item.ID }, new { @class = "a", role = "menuitem", tabindex = "-1" })
+                    </li>
+
+                    @*<li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Shoes</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="category.html">- Watches</a></li>*@
+                   }
+                    </ul>
+                }
+            </li>
+        </ul>
+                       
+                  
+        <input class="search-field" placeholder="Search here..." />
+        <a class="search-button" href="#"></a>
+    </div>
+</form>

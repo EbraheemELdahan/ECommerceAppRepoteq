@@ -1,0 +1,94 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IEnumerable<ECommerceApp.Models.Product>
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Name = "Products";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container row">
+
+    <hr />
+</div>
+@using (Html.BeginForm("Index", "AdminProducts", FormMethod.Get))
+{
+    <div class="form-group ml-4 mb-4 row  " style="margin-left: 10px; width: 70%">
+        <span>Search </span>  <input type="text" id="txtSearch" class="form-search" />
+    </div>
+    <div class="row ml-4" style="margin-left:10px">
+        @Html.ActionLink("Add Product", "Create", "AdminProducts", new { @class = "btn btn-success ", style = "margin-top:5px;margin-left:5px" })
+
+        @Html.ActionLink("Order by Name", "Index", new { SortOrder = ViewBag.RateSort }, new { @class = "btn btn-primary" })
+
+
+        @Html.ActionLink("Order by NumberOfProducts", "Index", new { SortOrder = ViewBag.PriceSort }, new { @class = "btn btn-primary" })
+
+    </div>
+
+    <table class="table table-bordered table-light col-xs-9" cellspacing=1px cellpadding=1px width="70%">
+        <tr>
+            <th>Image</th>
+            <th>Category Name</th>
+            <th>Brand Name</th>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Rate</th>
+            <th>Price</th>
+            <th>is Popular</th>
+            <th>Operations</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/Images/ProductsImages/@item.ImageURL" width="50px" height="50px" style="border-radius:50%" />
+                </td>
+
+                @if (@item.Category != null)
+                {
+                    <td>@item.Category.Name</td>
+                }
+                else
+                {
+                    <td>NoCategory</td>
+                }
+
+                <td>@item.Brand.Name</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Rate</td>
+                <td>@item.Price</td>
+                <td>@item.IsPopular</td>
+                <td>
+                    @Html.ActionLink("Details", "Details", "AdminProducts", new { id = item.ID }, new { @class = "btn" })
+                    @Html.ActionLink("Edit", "Edit", "AdminProducts", new { id = item.ID }, new { @class = "btn" })
+                    @Html.ActionLink("Delete", "Delete", "AdminProducts", new { id = item.ID }, new { @class = "btn" })
+
+                </td>
+            </tr>
+        }
+    </table>
+    <div style="text-align:center">
+        @Html.PagedListPager(ViewBag.ProductsPerPage as IPagedList, page => Url.Action("Index", new { page, SortOrder = ViewBag.CurrentSort }))
+        @*@Html.PagedListPager((IPagedList)ViewBag.CategoriesPerPage, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort }))*@
+    </div>
+}
+@section scripts{
+
+    <script>
+        $(function () {
+            $("#txtSearch").keyup(function () {
+                var userInput = $(this).val();
+                $("table:first tr:gt(0)").each(function (index, element) {
+                    var currentValue = $(this).children("td:eq(1)").text()
+                    if (currentValue.toLowerCase().indexOf(userInput.toLowerCase()) != -1) {
+                        $(this).show();
+                    }
+                    else {
+                        $(this).hide();
+                    }
+                })//end each
+            })//end key
+        })//end of load
+    </script>
+}

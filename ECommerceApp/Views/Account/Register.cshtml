@@ -1,0 +1,167 @@
+﻿@model ECommerceApp.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    
+}
+
+<h2>@ViewBag.Title.</h2>
+
+
+
+
+
+
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = " register-form outer-top-xs form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+
+
+
+
+
+
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+    <div class="col-md-6 col-sm-6 create-new-account">
+        <h4 class="checkout-subtitle">Create a new account</h4>
+
+
+        <div class="form-group">
+            <label class="info-title" for="Email">Email Address <span>*</span></label>
+            <!--<input type="text" name="Email" class="form-control unicase-form-control text-input"--> @*id="exampleInputEmail2"*@
+            @Html.TextBoxFor(a => a.Email, new { @class = "form-control unicase-form-control text-input" })
+        </div>
+        <div class="form-group">
+            <label class="info-title" for="FirstName">First Name <span>*</span></label>
+            @* <input type="email" class="form-control unicase-form-control text-input" >*@
+            @Html.TextBoxFor(a => a.FirstName, new { @class = "form-control unicase-form-control text-input" })
+
+        </div>
+        <div class="form-group">
+            <label class="info-title" for="LastName">Last Name <span>*</span></label>
+            @*  <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1">*@
+            @Html.TextBoxFor(a => a.LastName, new { @class = "form-control unicase-form-control text-input" })
+
+        </div>
+        <div class="form-group">
+            <label class="info-title" for="CompanyName"> Company Name <span>*</span></label>
+            @* <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1">*@
+            @Html.TextBoxFor(a => a.CompanyName, new { @class = "form-control unicase-form-control text-input" })
+
+        </div>
+        <div class="form-group">
+            <label class="info-title" for="Password"> Password <span>*</span></label>
+            @*<input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1">*@
+            @Html.PasswordFor(a => a.Password, new { @class = "form-control unicase-form-control text-input" })
+
+        </div>
+        <div class="form-group">
+            <label class="info-title" for="ConfirmPassword">Confirm Password <span>*</span></label>
+            @*<input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1">*@
+            @Html.PasswordFor(a => a.ConfirmPassword, new { @class = "form-control unicase-form-control text-input" })
+
+        </div>
+        <div class="form-group">
+            <label class="info-title" for="DaetOfBirth">Daet Of Birth <span>*</span></label>
+            @* <input type="email" class="form-control unicase-form-control text-input" >*@
+            @Html.EditorFor(a => a.DaetOfBirth, new { @class = "form-control unicase-form-control text-input" })
+
+        </div>
+        @*<button type="button" class="btn-upper btn btn-primary checkout-page-button" id="save">Sign Up</button>*@
+    <button type="button" class="btn-upper btn btn-primary" data-toggle="modal" data-target="#details">
+        Submit
+    </button>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="details">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Submit Registeration</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Click Submit to successful registeration </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="save">Submit Register</button>*
+                    @* @Html.ActionLink("Save", "Index", "Home", null, new { @class = "btn btn-primary" })*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- create a new account -->
+
+
+
+
+
+
+}
+@section scripts{
+    @*<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>*@
+    <script>
+        //$("#save").click(function () {
+        //    $("#details").modal({ show: true })
+        //}
+    </script>
+}
+
+
+@*<h4>Create a new account.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m=>m.FirstName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m=>m.LastName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.CompanyName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Register" />
+        </div>
+    </div>*@
+
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
