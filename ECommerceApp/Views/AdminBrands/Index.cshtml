@@ -11,7 +11,7 @@
 
 
 @Html.ActionLink("Add Brand", "Create", "AdminBrands", new { @class = "btn btn-success ", style = "margin-top:5px;margin-left:5px" })
-<div style="margin:5px" >
+<div style="margin:5px">
     <span style="font:30px bold verdana">Search : </span><input type="text" id="txtSearch" class="form-search" style="border-radius:10%;padding:5px" />
 
 </div>
@@ -55,7 +55,7 @@
     }
 
 </table>
-@section script{
+@section scripts{
     <script>
         $(function () {
             $("#txtSearch").keyup(function () {
@@ -63,9 +63,9 @@
                 $("table:first tr:gt(0)").each(function (index, element) {
                     var currentValue = $(this).children("td:eq(1)")()
                 })
-                
+
             })
         })
     </script>
-    
-    }
+
+}

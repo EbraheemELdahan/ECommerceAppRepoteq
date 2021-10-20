@@ -190,6 +190,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110201043242_InitialCreate.cs" />
+    <Compile Include="Migrations\202110201043242_InitialCreate.Designer.cs">
+      <DependentUpon>202110201043242_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110201106043_init.cs" />
+    <Compile Include="Migrations\202110201106043_init.Designer.cs">
+      <DependentUpon>202110201106043_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\CartViewModel.cs" />
@@ -238,6 +247,101 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\assets\images\ajax.gif" />
+    <Content Include="Images\assets\images\banners\banner-side.png" />
+    <Content Include="Images\assets\images\banners\cat-banner-1.jpg" />
+    <Content Include="Images\assets\images\banners\home-banner.jpg" />
+    <Content Include="Images\assets\images\banners\home-banner1.jpg" />
+    <Content Include="Images\assets\images\banners\home-banner2.jpg" />
+    <Content Include="Images\assets\images\banners\home-banner3.jpg" />
+    <Content Include="Images\assets\images\banners\home-banner4.jpg" />
+    <Content Include="Images\assets\images\banners\LHS-banner.jpg" />
+    <Content Include="Images\assets\images\banners\top-menu-banner.jpg" />
+    <Content Include="Images\assets\images\banners\top-menu-banner1.jpg" />
+    <Content Include="Images\assets\images\blank.gif" />
+    <Content Include="Images\assets\images\blog-post\blog_big_01.jpg" />
+    <Content Include="Images\assets\images\blog-post\blog_big_02.jpg" />
+    <Content Include="Images\assets\images\blog-post\blog_big_03.jpg" />
+    <Content Include="Images\assets\images\close.png" />
+    <Content Include="Images\assets\images\hot-deals\p13.jpg" />
+    <Content Include="Images\assets\images\hot-deals\p13_hover.jpg" />
+    <Content Include="Images\assets\images\hot-deals\p14.jpg" />
+    <Content Include="Images\assets\images\hot-deals\p14_hover.jpg" />
+    <Content Include="Images\assets\images\hot-deals\p15.jpg" />
+    <Content Include="Images\assets\images\hot-deals\p15_hover.jpg" />
+    <Content Include="Images\assets\images\icon-cart.png" />
+    <Content Include="Images\assets\images\label.png" />
+    <Content Include="Images\assets\images\loading.gif" />
+    <Content Include="Images\assets\images\logo.png" />
+    <Content Include="Images\assets\images\next.png" />
+    <Content Include="Images\assets\images\payments\1.png" />
+    <Content Include="Images\assets\images\payments\2.png" />
+    <Content Include="Images\assets\images\payments\3.png" />
+    <Content Include="Images\assets\images\payments\4.png" />
+    <Content Include="Images\assets\images\payments\5.png" />
+    <Content Include="Images\assets\images\prev.png" />
+    <Content Include="Images\assets\images\products\p1.jpg" />
+    <Content Include="Images\assets\images\products\p10.jpg" />
+    <Content Include="Images\assets\images\products\p10_hover.jpg" />
+    <Content Include="Images\assets\images\products\p11.jpg" />
+    <Content Include="Images\assets\images\products\p11_hover.jpg" />
+    <Content Include="Images\assets\images\products\p12.jpg" />
+    <Content Include="Images\assets\images\products\p12_hover.jpg" />
+    <Content Include="Images\assets\images\products\p13.jpg" />
+    <Content Include="Images\assets\images\products\p13_hover.jpg" />
+    <Content Include="Images\assets\images\products\p14.jpg" />
+    <Content Include="Images\assets\images\products\p14_hover.jpg" />
+    <Content Include="Images\assets\images\products\p15.jpg" />
+    <Content Include="Images\assets\images\products\p15_hover.jpg" />
+    <Content Include="Images\assets\images\products\p1_hover.jpg" />
+    <Content Include="Images\assets\images\products\p2.jpg" />
+    <Content Include="Images\assets\images\products\p2_hover.jpg" />
+    <Content Include="Images\assets\images\products\p3.jpg" />
+    <Content Include="Images\assets\images\products\p3_hover.jpg" />
+    <Content Include="Images\assets\images\products\p4.jpg" />
+    <Content Include="Images\assets\images\products\p4_hover.jpg" />
+    <Content Include="Images\assets\images\products\p5.jpg" />
+    <Content Include="Images\assets\images\products\p5_hover.jpg" />
+    <Content Include="Images\assets\images\products\p6.jpg" />
+    <Content Include="Images\assets\images\products\p6_hover.jpg" />
+    <Content Include="Images\assets\images\products\p7.jpg" />
+    <Content Include="Images\assets\images\products\p7_hover.jpg" />
+    <Content Include="Images\assets\images\products\p8.jpg" />
+    <Content Include="Images\assets\images\products\p8_hover.jpg" />
+    <Content Include="Images\assets\images\products\p9.jpg" />
+    <Content Include="Images\assets\images\products\p9_hover.jpg" />
+    <Content Include="Images\assets\images\sliders\01.jpg" />
+    <Content Include="Images\assets\images\sliders\02.jpg" />
+    <Content Include="Images\assets\images\testimonials\member1.png" />
+    <Content Include="Images\assets\images\testimonials\member2.png" />
+    <Content Include="Images\assets\images\testimonials\member3.png" />
+    <Content Include="Images\assets\images\testimonials\member4.png" />
+    <Content Include="Images\BrandsImages\1002_p2.jpg" />
+    <Content Include="Images\BrandsImages\1003_p13_hover.jpg" />
+    <Content Include="Images\BrandsImages\3.jpg" />
+    <Content Include="Images\BrandsImages\3_p4_hover.jpg" />
+    <Content Include="Images\BrandsImages\48.jpg" />
+    <Content Include="Images\CategoriesImages\1002.jpg" />
+    <Content Include="Images\CategoriesImages\1006.jpg" />
+    <Content Include="Images\CategoriesImages\1007.jpg" />
+    <Content Include="Images\CategoriesImages\1008.jpg" />
+    <Content Include="Images\CategoriesImages\2003.jpg" />
+    <Content Include="Images\CategoriesImages\2004.jpg" />
+    <Content Include="Images\CategoriesImages\new1004.jpg" />
+    <Content Include="Images\CategoriesImages\new1005.jpg" />
+    <Content Include="Images\ProductsImages\1005.jpg" />
+    <Content Include="Images\ProductsImages\1006.jpg" />
+    <Content Include="Images\ProductsImages\2.jpg" />
+    <Content Include="Images\ProductsImages\2002.JPG" />
+    <Content Include="Images\ProductsImages\2_p4.jpg" />
+    <Content Include="Images\ProductsImages\3.jpg" />
+    <Content Include="Images\ProductsImages\4.jpg" />
+    <Content Include="Images\ProductsImages\5.jpg" />
+    <Content Include="Images\ProductsImages\6.jpg" />
+    <Content Include="Images\UsersProfile\3063038f-1f9d-4d02-9001-6bc43f87b8ab_EbraheemElDahan.jpg" />
+    <Content Include="Images\UsersProfile\6452b2b6-b65e-4d97-a0ae-55a6026eb4f7_EbraheemElDahanimages.jpg" />
+    <Content Include="Images\UsersProfile\84df3688-e991-45fb-a630-6006c3e50c80_IbrahimElDahan321chicken.jpg" />
+    <Content Include="Images\UsersProfile\images.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -265,6 +369,8 @@
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Images\CategoriesImages\1jpg" />
+    <Content Include="Images\CategoriesImages\2jpg" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -392,6 +498,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\SlideShow Images\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
@@ -412,6 +519,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202110201043242_InitialCreate.resx">
+      <DependentUpon>202110201043242_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110201106043_init.resx">
+      <DependentUpon>202110201106043_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

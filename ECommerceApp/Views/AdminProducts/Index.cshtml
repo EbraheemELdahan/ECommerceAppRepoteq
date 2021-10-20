@@ -52,8 +52,10 @@
                 {
                     <td>NoCategory</td>
                 }
-
-                <td>@item.Brand.Name</td>
+                @if (item.Brand != null) { <td>@item.Brand.Name</td>}
+                    else { <td>No Brand</td>}
+                
+                
                 <td>@item.Name</td>
                 <td>@item.Description</td>
                 <td>@item.Rate</td>

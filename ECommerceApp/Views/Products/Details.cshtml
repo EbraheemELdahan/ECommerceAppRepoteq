@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Details";
 }
+
 @Html.BeginForm("AddToCart", "Cart", new { id = Model.ID }, FormMethod.Get)
 {
 
@@ -10,7 +11,7 @@
         <div class="breadcrumb-inner">
             <ul class="list-inline list-unstyled">
                 <li><a href="/Home/Index">Home</a></li>
-                <li><a href="#">Clothing</a></li>
+                @*<li><a href="#">Clothing</a></li>*@
                 <li class='active'>@Model.Name</li>
             </ul>
         </div><!-- /.breadcrumb-inner -->
@@ -189,7 +190,7 @@
                         </div>
                         <div class='col-sm-12 col-md-8 col-lg-8 product-info-block'>
                             <div class="product-info">
-                                <h1 class="name">Floral Print Buttoned</h1>
+                                <h1 class="name">@Model.Name</h1>
 
                                 <div class="rating-reviews m-t-20">
                                     <div class="row">
