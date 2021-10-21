@@ -5,26 +5,28 @@ using System.Web;
 using System.Web.Mvc;
 using ECommerceApp.Models;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace ECommerceApp.Controllers
 {
     public class AdminProfileController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
-        // GET: AdminProfile
+
+        //private readonly UserManager<IdentityUser> _userManager;
+        //public AdminProfileController(UserManager<IdentityUser> userManager)
+        //{
+        //    _userManager = userManager;
+        //}
         public ActionResult Index()
         {
-            if (User.Identity.GetUserId()!=null)
-            {
-                string id = User.Identity.GetUserId();
-                var user = db.Users.FirstOrDefault(a => a.Id ==id);
-                return View(user);
-            }
-            else
-            {
-                return View("~/Account/Login.cshtml");
-            }
-           
+
+            // get userid from context
+
+            string id = User.Identity.GetUserId();
+            var admin = db.Users.SingleOrDefault(a => a.Id == id);
+            return View(admin);
+
         }
     }
 }

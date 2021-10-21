@@ -5,8 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ECommerceApp.Models;
- using Newtonsoft.Json;
-using System.Web.Script.Serialization;
+using Newtonsoft.Json;
+
 
 namespace ECommerceApp.Controllers
 {
@@ -155,7 +155,7 @@ namespace ECommerceApp.Controllers
 
     public class CartController : Controller
     {
-        HttpCookie orderCookie = new HttpCookie("orderCookie");
+
 
         ApplicationDbContext db = new ApplicationDbContext();
         // GET: Cart
@@ -238,7 +238,13 @@ namespace ECommerceApp.Controllers
 
             if (Request.Cookies["orderCookie"] != null)
             {
-                order = new JavaScriptSerializer().Deserialize<CartViewModel>(Request.Cookies["orderCookie"].Value);
+
+
+                var res = Request.Cookies["orderCookie"].Value.ToString();
+                    
+                
+                    
+                    order = new CartViewModel(); //new JavaScriptSerializer().Deserialize<CartViewModel>();
 
                 // order=  Session["order"]as CartViewModel;
                 int index = IsAddedToCart(id);
@@ -254,7 +260,7 @@ namespace ECommerceApp.Controllers
             }
             else
             {
-               
+                HttpCookie orderCookie = new HttpCookie("orderCookie","test");
 
                 order = new CartViewModel();
                 order.TotalQuantities = QuantityArrow;
@@ -268,9 +274,13 @@ namespace ECommerceApp.Controllers
                 //order.TotalPrice = order.ProductsQuantities[0].Quantity *product.Price;
 
                 order.TotalPrice = (float)(Math.Round(order.TotalPrice, 2));
+                
+                
                 //HttpCookie orderCookie = Request.Cookies["orderCookie"];
-                orderCookie.Value = JsonConvert.SerializeObject(order, Formatting.None, new JsonSerializerSettings()
-                { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+                //orderCookie.Value = JsonConvert.SerializeObject(order, Formatting.None, new JsonSerializerSettings()
+
+                
+
                 orderCookie.Expires = DateTime.Now.AddDays(2);
                 Response.Cookies.Add(orderCookie);
             }
@@ -292,11 +302,14 @@ namespace ECommerceApp.Controllers
 
         public ActionResult RemoveFromCart(int id)
         {
-            var jsonSerializer = new JavaScriptSerializer();
+
+
+
+            //var jsonSerializer = new JavaScriptSerializer();
             HttpCookie ordercookie = new HttpCookie("order");
 
             // CartViewModel cart = Session["order"] as CartViewModel;
-            CartViewModel c = jsonSerializer.Deserialize<CartViewModel>(ordercookie["order"]);
+            CartViewModel c = new CartViewModel();  // jsonSerializer.Deserialize<CartViewModel>(ordercookie["order"]);
 
             CartViewModel cart = c;
 
@@ -310,7 +323,7 @@ namespace ECommerceApp.Controllers
                 cart.ProductsQuantities.Remove(product);
             }
             product.Quantity--;
-            ordercookie["order"] = jsonSerializer.Serialize(cart);
+            ordercookie["order"] = "";  // jsonSerializer.Serialize(cart);
             return RedirectToAction("index");
         }
     }
