@@ -12,7 +12,7 @@ namespace ECommerceApp.Models
         [Key]
         public int ID { get; set; }
         [Required(ErrorMessage ="This Field is Required")]
-        [StringLength(50,MinimumLength =3)]
+        [StringLength(500,MinimumLength =3)]
         public string Name { get; set; }
         [Required]
         [StringLength(150,MinimumLength =5)]

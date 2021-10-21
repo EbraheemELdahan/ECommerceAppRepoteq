@@ -154,15 +154,18 @@ namespace ECommerceApp.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email,FirstName=model.FirstName,LastName=model.LastName,CompanyName=model.CompanyName,DaetOfBirth=model.DaetOfBirth,PhoneNumber=model.PhoneNumber };
                 var result = await UserManager.CreateAsync(user, model.Password);
+                string ImgUser = user.Id + "_" + user.FirstName + user.LastName + UserImg.FileName;
+                UserImg.SaveAs(Server.MapPath("~/Images/UsersProfile/") + ImgUser);
+                user.UserImg = ImgUser;
+                 db.SaveChanges();
                 if (result.Succeeded)
                 {
                    await UserManager.AddToRoleAsync(user.Id, "UserCustomer");
-                    string ImgUser = user.Id + "_" + user.FirstName + user.LastName + UserImg.FileName;
-                    UserImg.SaveAs(Server.MapPath("~/Images/UsersProfile/") + ImgUser);
-                    user.UserImg = ImgUser;
-                    db.SaveChanges();
+                    
+                    
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 

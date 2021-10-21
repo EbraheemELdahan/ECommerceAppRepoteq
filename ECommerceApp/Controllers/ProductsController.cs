@@ -17,6 +17,7 @@ namespace ECommerceApp.Controllers
         // GET: UserProduct
         public ActionResult Index(int page=1)
         {
+            
 
             ViewBag.Categories = db.Categories.Include(a=>a.SubCategories).Where(a=>a.ParentCategoryID==null).ToList();
             ViewBag.Brands = db.Brands.ToList();
