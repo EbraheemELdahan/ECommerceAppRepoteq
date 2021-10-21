@@ -1,6 +1,6 @@
 ﻿@model ECommerceApp.Models.ProductsPaginationViewModel
 @{
-    ViewBag.Title = "ProductIn" + ViewBag.Category.Name;
+    ViewBag.Title = "ProductIn" + ViewBag.Brand.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     ECommerceApp.Models.CartViewModel cart = Session["order"] as ECommerceApp.Models.CartViewModel;
@@ -53,10 +53,10 @@
                                             <div class="accordion-body collapse" name="@item.Name" id="@item.ID" style="height: 0px;">
                                                 <div class="accordion-inner">
                                                     <ul>
-                                                        <li><a href="#">gaming</a></li>
-                                                        <li><a href="#">office</a></li>
-                                                        <li><a href="#">kids</a></li>
-                                                        <li><a href="#">for women</a></li>
+                                                        @foreach (var subCategory in item.SubCategories)
+                                                        {
+                                                            <li><a href="/Products/ProductsInCategory/@item.ID">@subCategory.Name</a></li>
+                                                        }
                                                     </ul>
                                                 </div>
                                                 <!-- /.accordion-inner -->
@@ -436,15 +436,7 @@
 
 
                                 </ul>
-                                @*<ul class="list-inline list-unstyled">
-                                        <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                                        <li><a href="#">1</a></li>
-                                        <li class="active"><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                                    </ul>*@
-                                <!-- /.list-inline -->
+                               
                             </div>
                             <!-- /.pagination-container -->
                         </div>

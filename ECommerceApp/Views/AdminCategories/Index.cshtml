@@ -30,23 +30,33 @@
         <th>Category Img</th>
         <th>Name</th>
         <th>Description</th>
+        <th>Parent Category</th>
         <th>Number Of Products</th>
         <th>operations</th>
     </tr>
     @foreach (var item in Model)
     {
-        <tr>
-            <td><img src="~/Images/CategoriesImages/@item.CatName" style="border-radius:50%" height="70px" width="70px" /></td>
-            <td>@item.Name</td>
-            <td>@item.Description</td>
-            <td>@item.Products.Count</td>
-            <td>
-                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn" })
-                @Html.ActionLink("Edit", "edit", new { id = item.ID }, new { @class = "btn" })
-                @Html.ActionLink("Delete", "delete", new { id = item.ID }, new { @class = "btn" })
+<tr>
+    <td><img src="~/Images/CategoriesImages/@item.CatName" style="border-radius:50%" height="70px" width="70px" /></td>
+    <td>@item.Name</td>
+    <td>@item.Description</td>
+    @if (item.ParentCategory != null)
+    {
+        <td>@item.ParentCategory.Name</td>
+    }
+    else
+    {
+        <td>has no Parent Category</td>
 
-            </td>
-        </tr>
+    }
+    <td>@item.Products.Count</td>
+    <td>
+        @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn" })
+        @Html.ActionLink("Edit", "edit", new { id = item.ID }, new { @class = "btn" })
+        @Html.ActionLink("Delete", "delete", new { id = item.ID }, new { @class = "btn" })
+
+    </td>
+</tr>
     }
 
 </table>

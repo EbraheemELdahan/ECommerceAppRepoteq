@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using ECommerceApp.Models;
 using PagedList;
 using System.IO;
+using System.Data.Entity;
 
 namespace ECommerceApp.Controllers.Admin
 {
@@ -17,7 +18,7 @@ namespace ECommerceApp.Controllers.Admin
         // GET: AdminCategories
         public ActionResult Index(int? page,string SortOrder)
         {
-            var categories = db.Categories.ToList();
+            var categories = db.Categories.Include(a=>a.ParentCategory).ToList();
             ViewBag.CurrentSort = SortOrder;
             ViewBag.NameSortParam =String.IsNullOrEmpty(SortOrder)? "name_desc":"";
             ViewBag.ProductsCountParam = SortOrder == "countProducts" ? "Prod_desc" : "countProducts";
@@ -48,22 +49,25 @@ namespace ECommerceApp.Controllers.Admin
         //Get
         public ActionResult Create()
         {
+            ViewBag.ParentCategoryID = new SelectList(db.Categories.Where(a=>a.ParentCategoryID==null).ToList(),"ID","Name");
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Description,CatName")]Category category,HttpPostedFileBase CatName)
+        public ActionResult Create(Category category,HttpPostedFileBase CatName)
         {
             if (ModelState.IsValid)
             {
                 db.Categories.Add(category);
                 db.SaveChanges();
-                string NewImgUrl = category.ID + "." + CatName.FileName.Split('.')[1];
+                string NewImgUrl = category.ID+ "." + CatName.FileName.Split('.')[1];
                 CatName.SaveAs(Server.MapPath("~/Images/CategoriesImages/" )+ NewImgUrl);
                 category.CatName = NewImgUrl;
                 db.SaveChanges();
                 return RedirectToAction("index", "AdminCategories");
             }
+            ViewBag.ParentCategoryID = new SelectList(db.Categories.Where(a=>a.ParentCategoryID==null).ToList(), "ID", "Name");
+
             return View(category);
         }
         public ActionResult Details(int id)

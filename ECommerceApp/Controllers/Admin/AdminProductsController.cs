@@ -63,7 +63,9 @@ namespace ECommerceApp.Controllers.Admin
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.CategoryID = new SelectList(db.Categories.ToList(), "ID", "Name");
+            //ViewBag.CategoryID = new SelectList(db.Categories.ToList(), "ID", "Name");
+            ViewBag.CategoryID = new SelectList(db.Categories.Where(a=>a.ParentCategoryID!=null).ToList(), "ID", "Name");
+
             ViewBag.BrandID = new SelectList(db.Brands.ToList(), "ID", "Name");
             return View();
         }
@@ -81,7 +83,9 @@ namespace ECommerceApp.Controllers.Admin
                 db.SaveChanges();
                 return RedirectToAction("index");
             }
-            ViewBag.CategoryID = new SelectList(db.Categories.ToList(), "ID", "Name");
+            //ViewBag.CategoryID = new SelectList(db.Categories.ToList(), "ID", "Name");
+            ViewBag.CategoryID = new SelectList(db.Categories.Where(a=>a.ParentCategoryID!=null).ToList(), "ID", "Name");
+
             ViewBag.BrandID = new SelectList(db.Brands.ToList(), "ID", "Name");
             return View(product);
 
@@ -93,7 +97,10 @@ namespace ECommerceApp.Controllers.Admin
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.NotFound);
             }
             var product = db.Products.SingleOrDefault(a => a.ID == id);
-            ViewBag.CategoryID = new SelectList(db.Categories.ToList(), "ID", "Name");
+            //ViewBag.CategoryID = new SelectList(db.Categories.ToList(), "ID", "Name");
+            
+            ViewBag.CategoryID = new SelectList(db.Categories.Where(a => a.ParentCategoryID != null).ToList(), "ID", "Name");
+
             ViewBag.BrandID = new SelectList(db.Brands.ToList(), "ID", "Name");
             return View(product);
         }

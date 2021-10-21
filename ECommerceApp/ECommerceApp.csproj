@@ -198,6 +198,14 @@
     <Compile Include="Migrations\202110201106043_init.Designer.cs">
       <DependentUpon>202110201106043_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110210822033_catImageValidation.cs" />
+    <Compile Include="Migrations\202110210822033_catImageValidation.Designer.cs">
+      <DependentUpon>202110210822033_catImageValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110210855071_subCategories.cs" />
+    <Compile Include="Migrations\202110210855071_subCategories.Designer.cs">
+      <DependentUpon>202110210855071_subCategories.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Brand.cs" />
@@ -318,27 +326,32 @@
     <Content Include="Images\assets\images\testimonials\member4.png" />
     <Content Include="Images\BrandsImages\1002_p2.jpg" />
     <Content Include="Images\BrandsImages\1003_p13_hover.jpg" />
+    <Content Include="Images\BrandsImages\1_Capture8.JPG" />
     <Content Include="Images\BrandsImages\3.jpg" />
     <Content Include="Images\BrandsImages\3_p4_hover.jpg" />
     <Content Include="Images\BrandsImages\48.jpg" />
+    <Content Include="Images\CategoriesImages\1.jpg" />
     <Content Include="Images\CategoriesImages\1002.jpg" />
     <Content Include="Images\CategoriesImages\1006.jpg" />
     <Content Include="Images\CategoriesImages\1007.jpg" />
     <Content Include="Images\CategoriesImages\1008.jpg" />
+    <Content Include="Images\CategoriesImages\2.jpg" />
     <Content Include="Images\CategoriesImages\2003.jpg" />
     <Content Include="Images\CategoriesImages\2004.jpg" />
     <Content Include="Images\CategoriesImages\new1004.jpg" />
     <Content Include="Images\CategoriesImages\new1005.jpg" />
+    <Content Include="Images\ProductsImages\1.jpg" />
     <Content Include="Images\ProductsImages\1005.jpg" />
     <Content Include="Images\ProductsImages\1006.jpg" />
     <Content Include="Images\ProductsImages\2.jpg" />
     <Content Include="Images\ProductsImages\2002.JPG" />
     <Content Include="Images\ProductsImages\2_p4.jpg" />
     <Content Include="Images\ProductsImages\3.jpg" />
+    <Content Include="Images\ProductsImages\3.png" />
     <Content Include="Images\ProductsImages\4.jpg" />
     <Content Include="Images\ProductsImages\5.jpg" />
     <Content Include="Images\ProductsImages\6.jpg" />
-    <Content Include="Images\UsersProfile\3063038f-1f9d-4d02-9001-6bc43f87b8ab_EbraheemElDahan.jpg" />
+    <Content Include="Images\UsersProfile\95cf773d-eaf7-4885-8a53-fa59fe5163d8_EbraheemElDahan.jpg" />
     <Content Include="Images\UsersProfile\6452b2b6-b65e-4d97-a0ae-55a6026eb4f7_EbraheemElDahanimages.jpg" />
     <Content Include="Images\UsersProfile\84df3688-e991-45fb-a630-6006c3e50c80_IbrahimElDahan321chicken.jpg" />
     <Content Include="Images\UsersProfile\images.jpg" />
@@ -495,7 +508,7 @@
     <Content Include="Views\Users\Details.cshtml" />
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
-    <Content Include="Views\Products\ProductsInCayegory.cshtml" />
+    <Content Include="Views\Products\ProductsInCategory.cshtml" />
     <Content Include="Views\Products\ProductsInBrand.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -528,6 +541,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110201106043_init.resx">
       <DependentUpon>202110201106043_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110210822033_catImageValidation.resx">
+      <DependentUpon>202110210822033_catImageValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110210855071_subCategories.resx">
+      <DependentUpon>202110210855071_subCategories.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

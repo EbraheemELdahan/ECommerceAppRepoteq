@@ -21,7 +21,8 @@ namespace ECommerceApp.Models
         public int? ParentCategoryID { get; set; }
         //[ForeignKey("UserAdmin")]
         //public string AdminID { get; set; }
-
+        [Required(ErrorMessage ="Please Insert a Photo for Category")]
+        
         public string CatName { get; set; }
 
         //NAVIGATION PROPERITY
@@ -29,5 +30,6 @@ namespace ECommerceApp.Models
 
         public virtual Category ParentCategory { get; set; }
         public virtual List<Product> Products { get; set; }
+        public virtual List<Category> SubCategories { get; set; }
     }
 }
