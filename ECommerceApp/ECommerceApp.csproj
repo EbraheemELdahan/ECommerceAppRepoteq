@@ -522,7 +522,6 @@
     <Content Include="Views\Customer\Profile.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Shared\product.cshtml" />
     <Content Include="Views\Shared\SearchHeader.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
@@ -532,6 +531,8 @@
     <Content Include="Views\Products\ProductsInCategory.cshtml" />
     <Content Include="Views\Products\ProductsInBrand.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\LoginPartialView.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

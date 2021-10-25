@@ -14,7 +14,7 @@ using ECommerceApp;
 
 namespace ECommerceApp.Controllers
 {
-    [Authorize (Roles ="Admin")]
+   // [Authorize (Roles ="Admin")]
     public class AccountController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
@@ -54,14 +54,21 @@ namespace ECommerceApp.Controllers
                 _userManager = value;
             }
         }
-
+        public ActionResult Index()
+        {
+            //LR.Login = new LoginViewModel();
+            //LR.Register = new RegisterViewModel();
+            return View();
+        }
         //
         // GET: /Account/Login
         [AllowAnonymous]
+        //[ChildActionOnly]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            LoginViewModel login = new LoginViewModel();
+            return PartialView("LoginPartialView", login);
         }
 
         //
@@ -69,11 +76,13 @@ namespace ECommerceApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> LoginPost(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                ModelState.AddModelError("", "Invalid login attempt.");
+
+                return RedirectToAction("index", model);
             }
 
             // This doesn't count login failures towards account lockout
@@ -90,7 +99,8 @@ namespace ECommerceApp.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    return RedirectToAction("index", result);
+
             }
         }
 
@@ -139,16 +149,18 @@ namespace ECommerceApp.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        
+        //[ChildActionOnly]
         public ActionResult Register()
         {
-            return View("Login");
+            RegisterViewModel register = new RegisterViewModel();
+            return PartialView("RegisterPartialView", register);
         }
 
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model,HttpPostedFileBase UserImg)
         {
@@ -180,11 +192,11 @@ namespace ECommerceApp.Controllers
                     return View("~/Views/Home/index.cshtml");
                 }
                 AddErrors(result);
-                return View("Login");
+                return RedirectToAction("index",result);
             }
 
             // If we got this far, something failed, redisplay form
-            return View("login");
+            return RedirectToAction("index",model);
         }
 
         //

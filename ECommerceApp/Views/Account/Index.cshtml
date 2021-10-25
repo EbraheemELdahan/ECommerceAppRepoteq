@@ -1,0 +1,22 @@
+﻿@using ECommerceApp.Models
+@*@model ECommerceApp.Models.LoginRegister*@
+@{
+    ViewBag.Title = "Login Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="body-content">
+    <div class="container">
+        <div class="sign-in-page">
+            <div class="row">
+                <!-- Sign-in -->
+                @{Html.RenderAction("Login", "Account");}
+
+                    @{Html.RenderAction("Register", "Account");}
+
+
+                <!-- create a new account -->
+            </div><!-- /.row -->
+        </div><!-- /.sigin-in-->
+
+    </div><!-- /.body-content -->
+</div>

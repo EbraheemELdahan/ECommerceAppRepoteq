@@ -1,0 +1,38 @@
+﻿@model ECommerceApp.Models.LoginViewModel
+<div class="col-md-6 col-sm-6 sign-in">
+    <h4 class="">Sign in</h4>
+    <p class="">Hello, Welcome to your account.</p>
+    <div class="social-sign-in outer-top-xs">
+        <a href="#" class="facebook-sign-in"><i class="fa fa-facebook"></i> Sign In with Facebook</a>
+        <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
+    </div>
+    @*  <form class="register-form outer-top-xs" role="form" method="post" action="~/Account/Login">*@
+    @using (Html.BeginForm("LoginPost", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "register-form outer-top-xs", role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
+            <input type="email" class="form-control unicase-form-control text-input" name="Email">
+        </div>
+        <div class="form-group">
+            <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
+            <input type="password" class="form-control unicase-form-control text-input" name="Password">
+        </div>
+        <div class="radio outer-xs form-group">
+
+            <input type="radio" name="RememberMe" id="optionsRadios2" value="option2">Remember me!
+
+            @*@Html.LabelFor(a => a.RememberMe, new { id = "optionsRadios2" })
+
+
+                @Html.RadioButtonFor(a => a.RememberMe, new {id= "optionsRadios2" })*@
+
+            <a href="/Account/ForgotPassword" class="forgot-password pull-right">Forgot your Password?</a>
+        </div>
+        <input type="submit" value="Login" class="btn-upper btn btn-primary checkout-page-button">
+    }
+
+
+
+</div>

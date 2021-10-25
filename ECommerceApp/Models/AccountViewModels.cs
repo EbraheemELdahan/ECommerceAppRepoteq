@@ -4,6 +4,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ECommerceApp.Models
 {
+    public class LoginRegister
+    {
+        public LoginViewModel Login { get; set; }
+        public RegisterViewModel Register { get; set; }
+    }
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
