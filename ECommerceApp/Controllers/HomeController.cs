@@ -10,6 +10,8 @@ namespace ECommerceApp.Controllers
     public class HomeController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
+
+        
         public ActionResult SearchHeader()
         {
             

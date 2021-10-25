@@ -2,16 +2,21 @@
 @using Newtonsoft.Json;
 @{
     ApplicationDbContext db = new ApplicationDbContext();
-    
-    List<Category> Category =db.Categories.ToList();
+
+    List<Category> Category = db.Categories.ToList();
+    float TotalPrice = 0;
     if (Request.Cookies.Get("MyCookieValue13")["myvalues"] != null)
     {
         var orderCook = Request.Cookies.Get("MyCookieValue13")["myvalues"];
         CartViewModel cart = JsonConvert.DeserializeObject<CartViewModel>(orderCook) as CartViewModel;
 
-        ViewBag.totalprice =cart.TotalPrice;
+        TotalPrice = cart.TotalPrice;
     }
-}
+    else
+    {
+        TotalPrice = 0;
+    } 
+    }
 
 <!DOCTYPE html>
 <html>
@@ -152,7 +157,7 @@
                                     <div class="basket">
                                         <div class="basket-item-count"><span class="count">2</span></div>
                                         <div class="total-price-basket">
-                                            <span class="lbl">Shopping Cart</span> <span class="value">@ViewBag.totalprice</span>
+                                            <span class="lbl">Shopping Cart</span> <span class="value">TotalPrice</span>
                                         </div>
                                     </div>
                                 </div>
@@ -168,7 +173,7 @@
                                             </div>
                                             <div class="col-xs-7">
                                                 <h3 class="name"><a href="index8a95.html?page-detail">Ypur Products</a></h3>
-                                                <div class="price">viewbag.totalprice</div>
+                                                <div class="price">TotalPrice</div>
                                             </div>
                                             <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
                                         </div>
@@ -178,7 +183,7 @@
                                     <hr>
                                     <div class="clearfix cart-total">
                                         <div class="pull-right">
-                                            <span class="text">Sub Total :</span><span class='price'>@ViewBag.totalprice</span>
+                                            <span class="text">Sub Total :</span><span class='price'>TotalPrice</span>
                                         </div>
                                         <div class="clearfix"></div>
                                         <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
