@@ -6,7 +6,7 @@
     @using (Html.BeginForm("Register", "account", FormMethod.Post, new { @class = "register-form outer-top-xs",enctype="multipart/form-data", role = "form" }))
     {
         @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true, "", new { @class = "Text-danger" })
+        @Html.ValidationSummary( false, "", new { @class = "Text-danger" })
         <div class="form-group">
             <label class="info-title" for="Email">Email Address <span>*</span></label>
             <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail2" name="Email">

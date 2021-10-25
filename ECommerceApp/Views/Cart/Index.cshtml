@@ -74,18 +74,11 @@
                                             </div>
                                         </td>
                                         @*<td class="cart-product-edit"><a href="#" class="product-edit">Edit</a></td>*@
-                                        <td class="cart-product-quantity">
-                                            @*<div class="quant-input">
-                <div class="arrows">
-                    <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-                    <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
-                </div>
-                <input type="text" value="1">
-            </div>*@
+                                        <td class="cart-product-quantity">                                           
                                             @item2.Quantity
                                         </td>
                                         <td class="cart-product-sub-total"><span class="cart-sub-total-price">@item2.Product.Price</span></td>
-                                        <td class="cart-product-grand-total"><span class="cart-grand-total-price">@ViewBag.order.TotalPrice</span></td>
+                                        <td class="cart-product-grand-total"><span class="cart-grand-total-price">@(item2.Product.Price * item2.Quantity)</span></td>
                                     </tr>
 
                                     }

@@ -73,7 +73,7 @@ namespace ECommerceApp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                return View();
             }
 
             // This doesn't count login failures towards account lockout
@@ -184,7 +184,7 @@ namespace ECommerceApp.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View("login");
         }
 
         //

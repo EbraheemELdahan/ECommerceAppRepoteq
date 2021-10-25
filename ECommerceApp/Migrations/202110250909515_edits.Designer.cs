@@ -13,7 +13,7 @@ namespace ECommerceApp.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202110211114051_edits"; }
+            get { return "202110250909515_edits"; }
         }
         
         string IMigrationMetadata.Source

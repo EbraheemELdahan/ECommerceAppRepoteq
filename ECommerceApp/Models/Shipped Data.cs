@@ -9,6 +9,7 @@ namespace ECommerceApp.Models
 {
     public class Shipped_Data
     {
+        
         public string Country { get; set; }
         public string City { get; set; }
         public string Street { get; set; }

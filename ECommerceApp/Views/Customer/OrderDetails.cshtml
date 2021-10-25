@@ -69,20 +69,32 @@
                                         <tr>
                                             <th>OrderNumber</th>
                                             <th>Date</th>
-                                            <th>Total</th>
+                                            <th>UnitPrice</th>
+                                            <th>Unit Quantity</th>
+                                            <th>Total Price for this product </th>
                                             <th>Discount</th>
+                                            <th>Total After Discoun</th>
                                             @*<th>Tax</th>
-                                            <th>Total After Discount</th>*@
+        <th>Total After Discount</th>*@
                                         </tr>
-                                        
+                                        @foreach (var item in Model.OrderDetails)
+                                        {
+
+
                                         <tr>
                                             <td>@Model.OrderNumber</td>
                                             <td>@Model.OrderDate</td>
-                                            <td>@Model.TotalPrice</td>
+                                            <td>@item.UnitPrice</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.TotalPrice</td>
+                                            <td>@item.Discount</td>
+                                            <td>@(item.TotalPrice - item.Discount)</td>
+                                           
                                             @*<td>@Model.</td>
                                             <td></td>
                                             <td></td>*@
                                         </tr>
+                                        }
                                     </table>
                                 </div>
                             </div>
