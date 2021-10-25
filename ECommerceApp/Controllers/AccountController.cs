@@ -54,11 +54,11 @@ namespace ECommerceApp.Controllers
                 _userManager = value;
             }
         }
-        public ActionResult Index()
+        public ActionResult Index(LoginRegister LR)
         {
-            //LR.Login = new LoginViewModel();
-            //LR.Register = new RegisterViewModel();
-            return View();
+            LR.Login = new LoginViewModel();
+            LR.Register = new RegisterViewModel();
+            return View(LR);
         }
         //
         // GET: /Account/Login
@@ -74,13 +74,14 @@ namespace ECommerceApp.Controllers
         //
         // POST: /Account/Login
         [HttpPost]
-        [AllowAnonymous]
+        
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> LoginPost(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Invalid login attempt.");
+                //return View("index", new LoginRegister() { Login = model });
 
                 return RedirectToAction("index", model);
             }
@@ -99,8 +100,8 @@ namespace ECommerceApp.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return RedirectToAction("index", result);
-
+                     return RedirectToAction("index", model );
+                    //return View("index", new LoginRegister() { Login=model});
             }
         }
 

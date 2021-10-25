@@ -7,7 +7,7 @@
         <a href="#" class="twitter-sign-in"><i class="fa fa-twitter"></i> Sign In with Twitter</a>
     </div>
     @*  <form class="register-form outer-top-xs" role="form" method="post" action="~/Account/Login">*@
-    @using (Html.BeginForm("LoginPost", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "register-form outer-top-xs", role = "form" }))
+    @using (Html.BeginForm("Login", "Account", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "register-form outer-top-xs", role = "form" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(false, "", new { @class = "text-danger" })

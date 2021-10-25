@@ -8,16 +8,20 @@ using ECommerceApp.Models;
 using PagedList;
 using System.IO;
 using System.Data.Entity;
+using Newtonsoft.Json;
 
 namespace ECommerceApp.Controllers.Admin
 {
     //[Authorize(Roles ="Admin")]
     public class AdminCategoriesController : Controller
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+       public ApplicationDbContext db = new ApplicationDbContext();
         // GET: AdminCategories
+        
         public ActionResult Index(int? page,string SortOrder)
         {
+            
+
             var categories = db.Categories.Include(a=>a.ParentCategory).ToList();
             ViewBag.CurrentSort = SortOrder;
             ViewBag.NameSortParam =String.IsNullOrEmpty(SortOrder)? "name_desc":"";
@@ -44,6 +48,18 @@ namespace ECommerceApp.Controllers.Admin
             var pageNumber = page ?? 1;
             var CategoriesPerPage = categories.ToPagedList(pageNumber,3);
             ViewBag.CategoriesPerPage = CategoriesPerPage;
+
+
+
+            //HttpCookie categoriesCookie = new HttpCookie("Categories");
+
+            //string categorsString = JsonConvert.SerializeObject(db.Categories.Include(a=>a.SubCategories).ToList(), Formatting.None, new JsonSerializerSettings
+            //{
+            //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            //});
+            //Request.Cookies.Get("Categories");
+            //categoriesCookie["mycategory"] = categorsString;
+            //Response.Cookies.Add(categoriesCookie);
             return View(CategoriesPerPage);
         }
         //Get
