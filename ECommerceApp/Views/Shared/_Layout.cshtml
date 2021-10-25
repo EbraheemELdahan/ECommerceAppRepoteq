@@ -2,13 +2,15 @@
 @using Newtonsoft.Json;
 @{
     ApplicationDbContext db = new ApplicationDbContext();
-    //var CatCook = Request.Cookies.Get("Categories")["mycategory"];
+    
     List<Category> Category =db.Categories.ToList();
+    if (Request.Cookies.Get("MyCookieValue13")["myvalues"] != null)
+    {
+        var orderCook = Request.Cookies.Get("MyCookieValue13")["myvalues"];
+        CartViewModel cart = JsonConvert.DeserializeObject<CartViewModel>(orderCook) as CartViewModel;
 
-    var orderCook = Request.Cookies.Get("MyCookieValue13")["myvalues"];
-    CartViewModel cart = JsonConvert.DeserializeObject<CartViewModel>(orderCook) as CartViewModel;
-
-    ViewBag.totalprice = cart.TotalPrice;
+        ViewBag.totalprice =cart.TotalPrice;
+    }
 }
 
 <!DOCTYPE html>
