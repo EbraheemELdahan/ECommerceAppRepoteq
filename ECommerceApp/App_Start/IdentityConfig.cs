@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using ECommerceApp.Models;
+using System.Net.Mail;
+
 
 namespace ECommerceApp
 {
@@ -18,10 +20,35 @@ namespace ECommerceApp
     public class EmailService : IIdentityMessageService
     {
         
-        public Task SendAsync(IdentityMessage message)
+        public async Task SendAsync(IdentityMessage message)
         {
+
             // Plug in your email service here to send an email.
-            return Task.FromResult(0);
+            var mailMessage = new MailMessage
+            ("i.dahanich97@gmail.com", message.Destination, message.Subject, message.Body);
+
+            mailMessage.IsBodyHtml = true;
+            SmtpClient smtpclient = new SmtpClient();
+            smtpclient.Port = 587;
+            smtpclient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtpclient.UseDefaultCredentials = false;
+            smtpclient.Host = "smtp.gmail.com";
+            smtpclient.UseDefaultCredentials = false;
+            // mail.Subject = "Email Subject";
+           // mail.Body = "Content of the email";
+            smtpclient.EnableSsl = true;
+            smtpclient.Credentials = new System.Net.NetworkCredential()
+            {
+                UserName = "i.dahanich97@gmail.com",
+                Password = "Dahan_7415"
+            };
+
+            //using (var client = new SmtpClient())
+            //{
+                await smtpclient.SendMailAsync(mailMessage);
+            //}
+
+           // return Task.FromResult(0);
         }
     }
 
