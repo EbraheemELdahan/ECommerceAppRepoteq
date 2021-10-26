@@ -73,7 +73,10 @@
                             <li class="header_cart hidden-xs">@Html.ActionLink("SignIn/SignUp", "Index", "Account", null, new { @class = "a" })</li>
                             <li class="header_cart hidden-xs">@Html.ActionLink("Shopping-cart", "index", "Cart", null, new { @class = "a" })</li>
                             <li class="header_cart hidden-xs">@Html.ActionLink("Orders", "orders", "Customer", null, new { @class = "a" })</li>
-
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                            <li class="header_cart hidden-xs">@Html.ActionLink("LogOut", "LogOff", "Account", null, new { @class = "a" })</li>
+                            }
                         </ul>
                     </div>
                     <!-- /.cnt-account -->
@@ -131,7 +134,7 @@
 
 
                                                     <li role="presentation">
-                                                        <a role="menuitem" tabindex="-1" href="category.html">@item.Name</a>
+                                                        <a role="menuitem" tabindex="-1" href="/Products/ProductsInCategory/@item2.ID">@item2.Name</a>
                                                     </li>
                                                     }
                                                 }
@@ -157,7 +160,7 @@
                                     <div class="basket">
                                         <div class="basket-item-count"><span class="count">2</span></div>
                                         <div class="total-price-basket">
-                                            <span class="lbl">Shopping Cart</span> <span class="value">TotalPrice</span>
+                                            <span class="lbl">Shopping Cart</span> <span class="value">@TotalPrice</span>
                                         </div>
                                     </div>
                                 </div>
@@ -173,7 +176,7 @@
                                             </div>
                                             <div class="col-xs-7">
                                                 <h3 class="name"><a href="index8a95.html?page-detail">Ypur Products</a></h3>
-                                                <div class="price">TotalPrice</div>
+                                                <div class="price">@TotalPrice</div>
                                             </div>
                                             <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
                                         </div>
@@ -183,10 +186,10 @@
                                     <hr>
                                     <div class="clearfix cart-total">
                                         <div class="pull-right">
-                                            <span class="text">Sub Total :</span><span class='price'>TotalPrice</span>
+                                            <span class="text">Sub Total :</span><span class='price'>@TotalPrice</span>
                                         </div>
                                         <div class="clearfix"></div>
-                                        <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
+                                        <a href="@Url.Action("index","Cart")" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
                                     </div>
                                     <!-- /.cart-total-->
 

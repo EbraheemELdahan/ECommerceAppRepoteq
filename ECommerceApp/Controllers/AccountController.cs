@@ -182,15 +182,14 @@ namespace ECommerceApp.Controllers
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
-                   
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     //string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     //await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-                    if (user.Roles.ToString() == "Admin")
-                        return RedirectToAction("Index", "AdminProfile");
-                    return View("~/Views/Home/index.cshtml");
+                    
+                        return View("~/Views/Home/index.cshtml");
                 }
                 AddErrors(result);
                 return RedirectToAction("index",result);
@@ -415,12 +414,12 @@ namespace ECommerceApp.Controllers
 
         //
         // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+       // [HttpPost]
+       // [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("login", "account");
+            return RedirectToAction("index", "account");
         }
         public ActionResult logout()
         {

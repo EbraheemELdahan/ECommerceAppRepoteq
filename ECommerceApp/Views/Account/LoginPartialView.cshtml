@@ -21,12 +21,12 @@
         </div>
         <div class="radio outer-xs form-group">
 
-            <input type="radio" name="RememberMe" id="optionsRadios2" value="option2">Remember me!
+            <!--<input type="radio" name="RememberMe"--> @*id="optionsRadios2" value="option2"<!-->Remember me!-->*@
 
-            @*@Html.LabelFor(a => a.RememberMe, new { id = "optionsRadios2" })
+            @Html.LabelFor(a => a.RememberMe)
 
 
-                @Html.RadioButtonFor(a => a.RememberMe, new {id= "optionsRadios2" })*@
+                @Html.EditorFor(a => a.RememberMe)
 
             <a href="/Account/ForgotPassword" class="forgot-password pull-right">Forgot your Password?</a>
         </div>

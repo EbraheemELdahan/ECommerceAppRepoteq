@@ -47,16 +47,16 @@
                                      
                                     <div class="accordion-group">
                                         <div class="accordion-heading">
-                                            <a href="#@item.ID"  data-toggle="collapse"
+                                            <a href="#@item.Name"  data-toggle="collapse"
                                                class="accordion-toggle collapsed"> @item.Name </a>
                                         </div>
                                         <!-- /.accordion-heading -->
-                                        <div class="accordion-body collapse" name="@item.Name" id="@item.ID" style="height: 0px;">
+                                        <div class="accordion-body collapse" name="@item.Name" id="@item.Name" style="height: 0px;">
                                             <div class="accordion-inner">
                                                 <ul>
                                                     @foreach(var subCategory in item.SubCategories)
                                                     { 
-                                                    <li><a href="/Products/ProductsInCategory/@subCategory.ID">@subCategory.Name</a></li>
+                                                    <li><a href="@Url.Action("ProductsInCategory","Products",new { id=subCategory.ID})">@subCategory.Name</a></li>
                                                    }
                                                 </ul>
                                             </div>
