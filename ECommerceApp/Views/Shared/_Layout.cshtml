@@ -5,17 +5,18 @@
 
     List<Category> Category = db.Categories.ToList();
     float TotalPrice = 0;
-    if (Request.Cookies.Get("MyCookieValue13")["myvalues"] != null)
-    {
-        var orderCook = Request.Cookies.Get("MyCookieValue13")["myvalues"];
-        CartViewModel cart = JsonConvert.DeserializeObject<CartViewModel>(orderCook) as CartViewModel;
+    //if (Request.Cookies.Get("MyCookieValue13")["myvalues"] == null)
+    //{
+    //    TotalPrice = 0;
+    //}
+    //if (Request.Cookies.Get("MyCookieValue13")["myvalues"] != null)
+    //{
+    //    var orderCook = Request.Cookies.Get("MyCookieValue13")["myvalues"];
+    //    CartViewModel cart = JsonConvert.DeserializeObject<CartViewModel>(orderCook) as CartViewModel;
 
-        TotalPrice = cart.TotalPrice;
-    }
-    else
-    {
-        TotalPrice = 0;
-    } 
+    //    TotalPrice = cart.TotalPrice;
+    //}
+
     }
 
 <!DOCTYPE html>
@@ -141,8 +142,8 @@
                                                 </ul>
                                                 </li>
                                             </ul>
-                                    <input class="search-field" placeholder="Search here..." />
-                                    <a class="search-button" href="#"></a>
+                                    <input class="search-field" id="Name" name="Name" placeholder="Search here..." />
+                                    <a class="search-button" onclick="Search()" id="searchglobal")"></a>
                                 </div>
                             </form>
                         </div>
@@ -306,7 +307,38 @@
 
 
     @RenderSection("scripts", required: false)
+<script>
+    function Search() {
+        
+        var searchval = $("#Name").val();
+        $("#searchglobal").prop("href", `/products/detailsByName/${searchval}`)
+    }
 
+    $(document).ready(function () {
+        $("#Name").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Home/Index",
+                    type: "POST",
+                    dataType: "json",
+                    data: { Prefix: request.term },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            return { label: item.Name, value: item.Name };
+                        }))
+
+                    }
+                })
+            },
+            messages: {
+                noResults: "", results: ""
+            }
+        });
+    })
+    
+    
+</script>
+    
 
 </body>
 </html>

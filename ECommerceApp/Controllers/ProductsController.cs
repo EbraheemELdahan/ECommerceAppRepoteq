@@ -43,10 +43,17 @@ namespace ECommerceApp.Controllers
             
             return View(product);
         }
+        public ActionResult detailsByName(string name)
+        {
+            var product = db.Products.FirstOrDefault(a => a.Name ==name);
+            var ProductsInSameCategory = db.Categories.Include(a => a.Products).FirstOrDefault(a => a.ID == product.CategoryID).Products;
+            ViewBag.ProductsInSameCategory = ProductsInSameCategory;
+            return View(product);
+        }
         public ActionResult Details(int? id)
         {
             var product = db.Products.FirstOrDefault(a => a.ID == id);
-            var ProductsInSameCategory= db.Categories.Include(a => a.Products).FirstOrDefault(a => a.ID == product.CategoryID).Products;
+            var ProductsInSameCategory= db.Categories.Where(a=>a.ParentCategoryID!=null).Include(a=>a.SubCategories).Include(a => a.Products).FirstOrDefault(a => a.ID == product.CategoryID).Products;
             ViewBag.ProductsInSameCategory = ProductsInSameCategory;
             return View(product);
         }

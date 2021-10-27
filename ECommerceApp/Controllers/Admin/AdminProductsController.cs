@@ -65,7 +65,7 @@ namespace ECommerceApp.Controllers.Admin
         {
             //ViewBag.CategoryID = new SelectList(db.Categories.ToList(), "ID", "Name");
             ViewBag.CategoryID = new SelectList(db.Categories.Where(a=>a.ParentCategoryID!=null).ToList(), "ID", "Name");
-
+            
             ViewBag.BrandID = new SelectList(db.Brands.ToList(), "ID", "Name");
             return View();
         }

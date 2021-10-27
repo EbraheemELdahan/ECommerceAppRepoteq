@@ -1,6 +1,7 @@
 ﻿using ECommerceApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -21,7 +22,15 @@ namespace ECommerceApp.Controllers
          }
         public ActionResult Index()
         {
-            return View();
+            ViewBag.Categories = db.Categories.Include(a => a.SubCategories).ToList();
+            var products = db.Products.ToList();
+            return View(products);
+        }
+        [HttpPost]
+        public ActionResult Index(string _prefix)
+        {
+            var productsNames = db.Products.Where(s => s.Name.Contains( _prefix)).Select(a=>new {a.Name });
+            return Json(productsNames, JsonRequestBehavior.AllowGet); 
         }
 
         public ActionResult About()

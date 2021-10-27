@@ -7,6 +7,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ECommerceApp.Models
 {
+    public enum productStatus
+    {
+             New=1
+            ,Hot=2
+            ,Sale=3
+    }
     public class Product
     {
         [Key]
@@ -25,6 +31,8 @@ namespace ECommerceApp.Models
         public int? CategoryID { get; set; }
         [ForeignKey("Brand")]
         public int? BrandID { get; set; }
+
+        public productStatus productStatus { get; set; }
         //[ForeignKey("UserAdmin")]
         //public string AdminID { get; set; }
 

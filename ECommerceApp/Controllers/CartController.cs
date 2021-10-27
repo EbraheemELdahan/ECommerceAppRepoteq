@@ -251,12 +251,78 @@ namespace ECommerceApp.Controllers
             
             return RedirectToAction("Orders", "Customer");
         }
+        [HttpGet]
+        public ActionResult AddtoCart2(int id)
 
+        {
+
+
+            var product = db.Products.FirstOrDefault(a => a.ID == id);
+            Product product2 = new Product()
+            { ID = product.ID, Name = product.Name, ImageURL = product.ImageURL, Price = product.Price, Description = product.Description };
+            CartViewModel order = new CartViewModel();
+            if (Request.Cookies["MyCookieValue13"] != null)
+            {
+                var cc = Request.Cookies.Get("MyCookieValue13")["myvalues"];
+                order = JsonConvert.DeserializeObject<CartViewModel>(cc);
+
+                // order=  Session["order"]as CartViewModel;
+                int index = IsAddedToCart(id);
+                if (index == -1)
+                {
+                    product2.Price = product2.Price ;
+                    order.ProductsQuantities.Add(new ProductsQuantityViewModel() { Product = product2, Quantity = 1 });
+                    order.TotalPrice += product2.Price ;
+
+                }
+                else
+                {
+                    order.ProductsQuantities[index].Quantity += 1;
+                    //product2.Price += product2.Price * QuantityArrow;
+                    order.TotalPrice += product2.Price * 1;
+                }
+                //order.TotalPrice += product2.Price;
+                order.TotalPrice = (float)(Math.Round(order.TotalPrice, 2));
+                string myCookieVal = JsonConvert.SerializeObject(order, Formatting.None, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+                HttpCookie OrderCookieVal = Request.Cookies.Get("MyCookieValue13");
+                OrderCookieVal["myvalues"] = myCookieVal;
+                HttpContext.Response.Cookies.Add(OrderCookieVal);
+                // return Json(OrderCookieVal["myvalues"], JsonRequestBehavior.AllowGet);
+                return View("/home/index");
+            }
+            else
+            {
+                order = new CartViewModel();
+                order.TotalQuantities = 1;
+                order.TotalPrice = product2.Price * 1;
+                order.ProductsQuantities = new List<ProductsQuantityViewModel>();
+                order.ProductsQuantities.Add(new ProductsQuantityViewModel() { Product = product2 as Product, Quantity = 1 });
+                order.TotalPrice = (float)(Math.Round(order.TotalPrice, 2));
+                string myCookieVal = JsonConvert.SerializeObject(order, Formatting.None, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+                // var myCookieVal = new DataContractJsonSerializer(typeof(CartViewModel));
+
+                HttpCookie OrderCookieVal = new HttpCookie("MyCookieValue13");
+                OrderCookieVal["myvalues"] = myCookieVal.ToString();
+                HttpContext.Response.Cookies.Add(OrderCookieVal);
+                // return Json(OrderCookieVal["myvalues"], JsonRequestBehavior.AllowGet);
+                return RedirectToAction("Index");
+            }
+
+
+        }
         [HttpGet]
         public ActionResult AddtoCart(int id, int QuantityArrow)
 
         {
-           
+            
 
             var product = db.Products.FirstOrDefault(a => a.ID == id);
             Product product2 = new Product()
@@ -271,7 +337,7 @@ namespace ECommerceApp.Controllers
                 int index = IsAddedToCart(id);
                 if (index == -1)
                 {
-                    product2.Price = product2.Price * QuantityArrow;
+                    product2.Price = product2.Price * QuantityArrow ;
                     order.ProductsQuantities.Add(new ProductsQuantityViewModel() { Product = product2, Quantity = QuantityArrow });
                     order.TotalPrice += product2.Price * QuantityArrow;
 
@@ -352,7 +418,7 @@ namespace ECommerceApp.Controllers
             product.Quantity--;
             cart.TotalQuantities --;
             cart.TotalPrice = (product.Quantity * product.Product.Price);
-            if (product.Quantity == 1)
+            if (product.Quantity == 0)
             {
                 cart.ProductsQuantities.Remove(product);
             }
