@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ECommerceApp.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace ECommerceApp.Controllers
 {
@@ -22,10 +23,17 @@ namespace ECommerceApp.Controllers
         {
 
             // get userid from context
-
             string id = User.Identity.GetUserId();
             var admin = db.Users.SingleOrDefault(a => a.Id == id);
+            var wishlists = db.WishLists.Include(a=>a.Product).Where(a => a.userid == id);
+            var productsInWishLists = new List<Product>();
+            foreach (var item in wishlists)
+            {
+                productsInWishLists.Add(item.Product);
+            }
+            ViewBag.wishlists = productsInWishLists;
             return View(admin);
+
 
         }
     }

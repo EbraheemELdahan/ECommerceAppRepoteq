@@ -7,6 +7,7 @@ using ECommerceApp.Models;
 using System.Data.Entity;
 using PagedList;
 using PagedList.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace ECommerceApp.Controllers
 {
@@ -56,6 +57,15 @@ namespace ECommerceApp.Controllers
             var ProductsInSameCategory= db.Categories.Where(a=>a.ParentCategoryID!=null).Include(a=>a.SubCategories).Include(a => a.Products).FirstOrDefault(a => a.ID == product.CategoryID).Products;
             ViewBag.ProductsInSameCategory = ProductsInSameCategory;
             return View(product);
+        }
+        public ActionResult WishList(int id)
+        {
+            var product = db.Products.FirstOrDefault(a => a.ID == id);
+            string user = User.Identity.GetUserId();
+            var wishlist = new WishList() { productID = id, userid = user };
+            db.WishLists.Add(wishlist);
+            db.SaveChanges();
+            return RedirectToAction("index","adminprofile");
         }
         
        public ActionResult ProductsInCategory(int id ,int page=1)

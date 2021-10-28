@@ -325,7 +325,7 @@
                                                                     <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
                                                                 </li>
                                                                 <li class="lnk wishlist">
-                                                                    <a class="add-to-cart" href="/Products/Details" title="Wishlist">
+                                                                    <a class="add-to-cart" href="@Url.Action("wishlist","products",new { id=item.ID})" title="Wishlist">
                                                                         <i class="icon fa fa-heart"></i>
                                                                     </a>
                                                                 </li>
@@ -404,7 +404,7 @@
                                                                     <a href="/Cart/AddToCart/@item.ID" class="btn btn-primary cart-btn"></a>
                                                                     </li>
                                                                     <li class="lnk wishlist">
-                                                                        <a class="add-to-cart" href=""
+                                                                        <a class="add-to-cart" href="@Url.Action("wishlist","products",new { id=item.ID})"
                                                                            title="Wishlist"> <i class="icon fa fa-heart"></i> </a>
                                                                     </li>
                                                                     

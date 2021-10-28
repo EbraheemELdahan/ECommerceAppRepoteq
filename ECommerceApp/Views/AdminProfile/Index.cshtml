@@ -3,10 +3,12 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    
 }
 
-<h2>welcome Admin</h2>
+<h2>welcome @Model.FirstName @Model.LastName</h2>
 
 <dl style="text-align:center">
     <dt>Profile Image</dt>
@@ -26,3 +28,22 @@
     <dd>@Model.DaetOfBirth.ToString("dd/M/yyyy")</dd>
 
 </dl>
+<h2>YourWishLists</h2>
+<table class="table table-bordered col-5" style="width:50%;margin-left:10px">
+    <tr>
+        <th>ProductName</th>
+        <th>productPrice</th>
+        <th>AddTo Cart</th>
+    </tr>
+
+    @foreach (var item in ViewBag.wishlists)
+    {
+        <tr id="target">
+            <td>@item.Name</td>
+            <td>@item.Price</td>
+            <td>@Html.ActionLink("ADD TO CART","addtocart2","cart",new { id=item.ID}, new { @class = "btn btn-warning" })
+           </td>
+        </tr>
+    }
+
+</table>

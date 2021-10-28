@@ -229,6 +229,10 @@
     <Compile Include="Migrations\202110261306549_productstatus.Designer.cs">
       <DependentUpon>202110261306549_productstatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110271438215_wishlist.cs" />
+    <Compile Include="Migrations\202110271438215_wishlist.Designer.cs">
+      <DependentUpon>202110271438215_wishlist.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Brand.cs" />
@@ -246,6 +250,7 @@
     <Compile Include="Models\Shipped Data.cs" />
     <Compile Include="Models\SlidingImages.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\WishList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -580,6 +585,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110261306549_productstatus.resx">
       <DependentUpon>202110261306549_productstatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110271438215_wishlist.resx">
+      <DependentUpon>202110271438215_wishlist.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

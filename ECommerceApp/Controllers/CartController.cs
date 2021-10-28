@@ -281,7 +281,14 @@ namespace ECommerceApp.Controllers
                     //product2.Price += product2.Price * QuantityArrow;
                     order.TotalPrice += product2.Price * 1;
                 }
-                //order.TotalPrice += product2.Price;
+                
+                var wished = db.WishLists.FirstOrDefault(a => a.productID == product.ID);
+                if (wished != null)
+                {
+                    db.WishLists.Remove(wished);
+                    db.SaveChanges();
+                }
+                    //order.TotalPrice += product2.Price;
                 order.TotalPrice = (float)(Math.Round(order.TotalPrice, 2));
                 string myCookieVal = JsonConvert.SerializeObject(order, Formatting.None, new JsonSerializerSettings
                 {
@@ -292,7 +299,9 @@ namespace ECommerceApp.Controllers
                 OrderCookieVal["myvalues"] = myCookieVal;
                 HttpContext.Response.Cookies.Add(OrderCookieVal);
                 // return Json(OrderCookieVal["myvalues"], JsonRequestBehavior.AllowGet);
-                return View("/home/index");
+                
+                
+                return RedirectToAction("Index");
             }
             else
             {
@@ -302,6 +311,12 @@ namespace ECommerceApp.Controllers
                 order.ProductsQuantities = new List<ProductsQuantityViewModel>();
                 order.ProductsQuantities.Add(new ProductsQuantityViewModel() { Product = product2 as Product, Quantity = 1 });
                 order.TotalPrice = (float)(Math.Round(order.TotalPrice, 2));
+                var wished = db.WishLists.FirstOrDefault(a => a.productID == product.ID);
+                if (wished != null)
+                {
+                    db.WishLists.Remove(wished);
+                    db.SaveChanges();
+                }
                 string myCookieVal = JsonConvert.SerializeObject(order, Formatting.None, new JsonSerializerSettings
                 {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore
@@ -359,7 +374,7 @@ namespace ECommerceApp.Controllers
                 OrderCookieVal["myvalues"] = myCookieVal;
                 HttpContext.Response.Cookies.Add(OrderCookieVal);
                 // return Json(OrderCookieVal["myvalues"], JsonRequestBehavior.AllowGet);
-                return RedirectToAction("index");
+                return RedirectToAction("index","adminprofile");
             }
             else
             {
@@ -380,10 +395,11 @@ namespace ECommerceApp.Controllers
                 OrderCookieVal["myvalues"] = myCookieVal.ToString();
                 HttpContext.Response.Cookies.Add(OrderCookieVal);
                 // return Json(OrderCookieVal["myvalues"], JsonRequestBehavior.AllowGet);
-                return RedirectToAction("Index");
+                return RedirectToAction("index", "adminprofile");
+
             }
 
-           
+
         }
 
         public int IsAddedToCart(int productId)

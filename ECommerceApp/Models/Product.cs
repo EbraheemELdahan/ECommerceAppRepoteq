@@ -41,6 +41,7 @@ namespace ECommerceApp.Models
         
         public virtual List<OrderDetails> OrderDetails { get; set; }
         public virtual List<Favourites> Favourites { get; set; }
+        public virtual List<WishList> WishLists { get; set; }
         public virtual Brand Brand { get; set; }
 
     }

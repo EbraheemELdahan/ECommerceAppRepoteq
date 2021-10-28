@@ -52,6 +52,7 @@ namespace ECommerceApp.Models
         public virtual DbSet<SlidingImages> SlidingImages { get; set; }
         public virtual DbSet<Product> Products { get; set; }
 
+        public virtual DbSet<WishList> WishLists { get; set; }
 
 
 

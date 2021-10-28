@@ -74,9 +74,11 @@
                             <li class="header_cart hidden-xs">@Html.ActionLink("SignIn/SignUp", "Index", "Account", null, new { @class = "a" })</li>
                             <li class="header_cart hidden-xs">@Html.ActionLink("Shopping-cart", "index", "Cart", null, new { @class = "a" })</li>
                             <li class="header_cart hidden-xs">@Html.ActionLink("Orders", "orders", "Customer", null, new { @class = "a" })</li>
+                            <li class="header_cart hidden-xs">@Html.ActionLink("Profile", "index", "adminprofile", null, new { @class = "a" })</li>
+
                             @if (User.Identity.IsAuthenticated)
                             {
-                            <li class="header_cart hidden-xs">@Html.ActionLink("LogOut", "LogOff", "Account", null, new { @class = "a" })</li>
+                                <li class="header_cart hidden-xs">@Html.ActionLink("LogOut", "LogOff", "Account", null, new { @class = "a" })</li>
                             }
                         </ul>
                     </div>
